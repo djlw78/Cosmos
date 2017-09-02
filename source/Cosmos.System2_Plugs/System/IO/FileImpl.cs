@@ -155,6 +155,26 @@ namespace Cosmos.System_Plugs.System.IO
             }
         }
 
+        public static void Move(string srcFile, string destFile)
+        {
+            if (File.Exists(destFile))
+            {
+                throw new IOException();
+            }
+            else
+            {
+                try
+                {
+                    byte[] srcFileBytes = File.ReadAllBytes(srcFile);
+                    File.WriteAllBytes(destFile, srcFileBytes);
+                }
+                catch (IOException ioEx)
+                {
+                    throw new IOException("File Move", ioEx);
+                }
+            }            
+        }
+
         public static void Copy(string srcFile, string destFile)
         {
             try
