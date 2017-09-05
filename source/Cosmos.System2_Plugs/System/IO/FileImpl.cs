@@ -74,6 +74,11 @@ namespace Cosmos.System_Plugs.System.IO
             Global.mFileSystemDebugger.SendInternal("aText =");
             Global.mFileSystemDebugger.SendInternal(aText);
 
+            if (File.Exists(aFile))
+            {
+                File.Delete(aFile);
+            }           
+
             using (var xFS = new FileStream(aFile, FileMode.Create))
             {
                 Global.mFileSystemDebugger.SendInternal("Converting " + aText + " to UFT8");
